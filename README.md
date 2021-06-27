@@ -1,6 +1,9 @@
 # Technology
 All technology files for the open source EDA tools reside in this repository
 
+## Download
+- ``git clone https://github.com/silicon-vlsi-org/eda-technology``
+
 ## MOSIS Scalable CMOS ([SCMOS]/scn4m_subm)
 [SCMOS] is a *lambda-based* scalable design rules that can be interfaced to many CMOS fabrication process available at MOSIS. **NOTE** The scalable design rules does not interface with Fabs now because of lot unique process nuances.
 
