@@ -37,7 +37,7 @@ fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color) color_prompt=yes;;
+    xterm-color|*-256color) color_prompt=yes;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -57,7 +57,8 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+#    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]LXLE-VB\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]\$ '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -84,12 +85,13 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
+# colored GCC warnings and errors
+#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
 # some more ls aliases
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-alias rm='rm -i'
-alias vimr='vim -R'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -114,10 +116,34 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+#
 
-# Add EDA Tool environment variables
-if [ -f $HOME/SI2021-03-CMOS-VLSI/bashrc_eda ]; then
-	. $HOME/SI2021-03-CMOS-VLSI/bashrc_eda
-else
-	echo "bashrc_eda DOES NOT EXIST"
-fi
+## USER CUSTOMIZATION
+alias h='history'
+alias vimr='vim -R'
+
+## Setting up Environment Variables for EDA Tools
+export EDA_INSTALL_DIR=$HOME/cad
+# NGSPICE
+export  SPICE_INSTALL_DIR=$EDA_INSTALL_DIR/eda-ngspice/glnxa64
+export  SPICE_LIB_DIR=$SPICE_INSTALL_DIR/share/ngspice
+export  SPICE_EXEC_DIR=$SPICE_INSTALL_DIR/bin
+export PATH=$PATH:$SPICE_EXEC_DIR
+
+#Sue2 environment variables
+export CPPSIMHOME=$EDA_INSTALL_DIR/eda-sue2Plus
+export CPPSIMSHAREDHOME=$CPPSIMHOME/CppSimShared
+### EDITOR is required to create or modify files from Sue2
+export EDITOR=/usr/bin/vim
+
+export PATH=$PATH:$CPPSIMSHAREDHOME/bin
+
+## Magic and Netgen
+export MAGIC_HOME=$EDA_INSTALL_DIR/eda-magic/glnxa64
+export CAD_ROOT=$MAGIC_HOME/lib
+export NETGEN_HOME=$EDA_INSTALL_DIR/eda-netgen/glnxa64
+export PATH=$PATH:$MAGIC_HOME/bin:$NETGEN_HOME/bin
+
+## Xschem
+export XSCHEM_EXEC_DIR=$EDA_INSTALL_DIR/eda-xschem/glnxa64/bin
+export PATH=$PATH:$XSCHEM_EXEC_DIR
