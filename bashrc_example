@@ -147,3 +147,5 @@ export PATH=$PATH:$MAGIC_HOME/bin:$NETGEN_HOME/bin
 ## Xschem
 export XSCHEM_EXEC_DIR=$EDA_INSTALL_DIR/eda-xschem/glnxa64/bin
 export PATH=$PATH:$XSCHEM_EXEC_DIR
+
+#
