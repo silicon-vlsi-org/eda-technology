@@ -14,6 +14,12 @@ All technology files for the open source EDA tools reside in this repository
   - Vdd=5V, Lmin=0.4um, Wmin=0.6um
 
 ## Skywater 130nm PDK
-**NOTE** Not in the repo yet.
+
 - https://www.github.com/google/skywater-pdk
-- https://skywater-pdk.readthedocs.io/en/latest/
+- https://skywater-pdk.readthedocs.io/
+
+- Best way to get the PDK compiled is to clone one of efabless templates and run `make setup`
+  - https://github.com/efabless/caravel_user_project
+  - https://github.com/efabless/caravel_user_project_analog
+- It's installed using a tool called `volare` maintained under the efabless repo:
+  - https://github.com/efabless/volare
